@@ -17,6 +17,7 @@
     "commands": [
       {
         "command": "metacall.helloWorld",
+        "category": "MetaCall",
         "title": "Hello World"
       }
     ]
