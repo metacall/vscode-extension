@@ -19,6 +19,21 @@
         "command": "metacall.helloWorld",
         "category": "MetaCall",
         "title": "Hello World"
+      },
+      {
+        "command": "metacall.createTerminal",
+        "category": "MetaCall",
+        "title": "Create Terminal"
+      },
+      {
+        "command": "metacall.help",
+        "category": "MetaCall",
+        "title": "Metacall Deploy Help"
+      },
+      {
+        "command": "metacall.createDeploy",
+        "category": "MetaCall",
+        "title": "Create Metacall Faas Deploy"
       }
     ]
   },

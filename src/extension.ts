@@ -1,30 +1,86 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
+  let NEXT_TERM_ID = 1;
+  let createDeployButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+  createDeployButton.command = 'metacall.createDeploy';
+  createDeployButton.text = 'Deploy as Faas';
+  createDeployButton.show();
+  context.subscriptions.push(createDeployButton);
+
+  console.log("Terminals: " + (<any>vscode.window).terminals.length);
   console.log('Congratulations, your extension "MetaCall" is now active!');
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand(
-    "metacall.helloWorld",
-    () => {
-      // The code you place here will be executed every time your command is executed
-      // Display a message box to the user
+  context.subscriptions.push(
+    vscode.commands.registerCommand("metacall.helloWorld", () => {
       vscode.window.showInformationMessage(
         "Hello World from metacall! Let's deploy...🚀"
       );
-    }
+    })
   );
 
-  context.subscriptions.push(disposable);
+  context.subscriptions.push(
+    vscode.commands.registerCommand('metacall.help', () => {
+			if (ensureTerminalExists()) {
+				selectTerminal().then((terminal) => {
+					if (terminal) {
+            terminal.sendText("metacall-deploy --help");
+            terminal.show();
+					}
+				});
+			}
+      else {
+        const terminal = vscode.window.createTerminal(
+          `MetaCall #${NEXT_TERM_ID++}`
+        );
+        terminal.sendText("metacall-deploy --help");
+        terminal.show();
+      }
+		})
+  );
+
+  context.subscriptions.push(
+		vscode.commands.registerCommand('metacall.createDeploy', () => {
+			if (ensureTerminalExists()) {
+				selectTerminal().then((terminal) => {
+					if (terminal) {
+						terminal.sendText("metacall-deploy");
+            terminal.show();
+					}
+				});
+			}
+      else {
+        const terminal = vscode.window.createTerminal(
+          `MetaCall #${NEXT_TERM_ID++}`
+        );
+        terminal.sendText("metacall-deploy");
+        terminal.show();
+      }
+		})
+	);
 }
 
-// This method is called when your extension is deactivated
+function selectTerminal(): Thenable<vscode.Terminal | undefined> {
+	interface TerminalQuickPickItem extends vscode.QuickPickItem {
+		terminal: vscode.Terminal;
+	}
+	const terminals = <vscode.Terminal[]>(<any>vscode.window).terminals;
+	const items: TerminalQuickPickItem[] = terminals.map((t) => {
+		return {
+			label: `name: ${t.name}`,
+			terminal: t,
+		};
+	});
+	return vscode.window.showQuickPick(items).then((item) => {
+		return item ? item.terminal : undefined;
+	});
+}
+
+function ensureTerminalExists(): boolean {
+	if ((<any>vscode.window).terminals.length === 0) {
+		return false;
+	}
+	return true;
+}
+
 export function deactivate() {}
