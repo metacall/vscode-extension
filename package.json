@@ -12,6 +12,7 @@
   "activationEvents": [
     "onCommand:MetaCall.helloWorld"
   ],
+  
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
@@ -35,7 +36,36 @@
         "category": "MetaCall",
         "title": "Create Metacall Faas Deploy"
       }
+    ], "viewsContainers": {
+
+      "activitybar": [
+
+        {
+          "id": "metacall-activity-bar-icon",        
+          "title": "MetaCall",
+          "icon": "./icons/metacall.png"               
+        }
+      ]
+    },
+
+    "views": {
+
+      "metacall-activity-bar-icon": [              
+
+        {
+          "id": "metacall-primary-sidebar",    
+          "name": "MetaCall Actions",
+          "type": "tree"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "metacall-primary-sidebar",
+        "contents": "[Deploy as Faas](command:metacall.createDeploy)"
+      }
     ]
+    
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
