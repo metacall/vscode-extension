@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { createNewTask } from "./utilities";
+import { createNewTask } from "./utils/utilities";
 export async function activate(context: vscode.ExtensionContext) {
   vscode.window.showInformationMessage("Hello World from metacall!");
 
