@@ -56,6 +56,23 @@ export async function activate(context: vscode.ExtensionContext) {
       }
     })
   );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("metacall.logout", () => {
+      const logoutTask: vscode.Task = createNewTask(
+        "shell.Logout",
+        "Logout Terminal",
+        "metacall.logout",
+        "metacall-deploy --logout"
+      );
+      try {
+        vscode.tasks.executeTask(logoutTask);
+      } catch (error) {
+        console.log(error);
+      }
+
+    })
+  );
 }
 
 export function deactivate() {

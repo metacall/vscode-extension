@@ -33,9 +33,22 @@
       {
         "command": "metacall.createDeploy",
         "category": "MetaCall",
-        "title": "Create Metacall Faas Deploy"
+        "title": "Create Metacall Faas Deploy",
+        "icon":"./icons/metacall-deploy.png"
+      },
+      {
+        "command": "metacall.logout",
+        "category": "MetaCall",
+        "title": "Logout from MetaCall account"
       }
-    ],
+    ], "menus": {
+      "editor/title": [
+        {
+          "command": "metacall.createDeploy",
+          "group": "navigation"
+        }
+      ]
+    },
     "viewsContainers": {
       "activitybar": [
         {
@@ -59,8 +72,7 @@
         "view": "metacall-primary-sidebar",
         "contents": "[Deploy as Fass](command:metacall.createDeploy)\n[Help](command:metacall.help)\n"
       }
-    ],
-    "taskDefinitions": [{"type":"metacall","required": ["task"]}]
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
