@@ -24,7 +24,7 @@ export async function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("metacall.help", () => {
+    vscode.commands.registerCommand("metacall.help", async () => {
       const helpTask: vscode.Task = createNewTask(
         "shell.Help",
         "Help Terminal",
@@ -33,7 +33,7 @@ export async function activate(context: vscode.ExtensionContext) {
       );
 
       try {
-        vscode.tasks.executeTask(helpTask);
+        await vscode.tasks.executeTask(helpTask);
       } catch (error) {
         console.log(error);
       }
@@ -41,7 +41,7 @@ export async function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("metacall.createDeploy", () => {
+    vscode.commands.registerCommand("metacall.createDeploy", async () => {
       const deployTask: vscode.Task = createNewTask(
         "shell.Deploy",
         "Deploy Terminal",
@@ -50,7 +50,7 @@ export async function activate(context: vscode.ExtensionContext) {
       );
 
       try {
-        vscode.tasks.executeTask(deployTask);
+        await vscode.tasks.executeTask(deployTask);
       } catch (error) {
         console.log(error);
       }
@@ -58,19 +58,19 @@ export async function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("metacall.logout", () => {
+    vscode.commands.registerCommand("metacall.logout", async () => {
       const logoutTask: vscode.Task = createNewTask(
         "shell.Logout",
         "Logout Terminal",
         "metacall.logout",
         "metacall-deploy --logout"
       );
+
       try {
-        vscode.tasks.executeTask(logoutTask);
+        await vscode.tasks.executeTask(logoutTask);
       } catch (error) {
         console.log(error);
       }
-
     })
   );
 }
