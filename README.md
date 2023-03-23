@@ -1,20 +1,15 @@
 # MetaCall README
 
-This is the README for your extension "MetaCall". After writing up a brief description, we recommend including the following sections.
+A Visual Studio Extension for deploying MetaCall projects.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+MetaCall Visual Studio Extension is for one click deployment so you don't even need to use the command line for deploying MetaCall projects
+This makes working with project alot convenient as Visual Studio is quite Famous among developers 
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+* installation of metacall deploy
 
 ## Extension Settings
 
@@ -37,17 +32,7 @@ Users appreciate release notes as you update your extension.
 
 ### 1.0.0
 
-Initial release of ...
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
 
 ## Following extension guidelines
 
