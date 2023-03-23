@@ -62,6 +62,7 @@ export function activate(context: vscode.ExtensionContext) {
   );
 }
 
+
 function selectTerminal(): Thenable<vscode.Terminal | undefined> {
   interface TerminalQuickPickItem extends vscode.QuickPickItem {
     terminal: vscode.Terminal;
@@ -78,7 +79,7 @@ function selectTerminal(): Thenable<vscode.Terminal | undefined> {
   });
 }
 
-function ensureTerminalExists(): boolean {
+function ensureTerminalExists(): boolean {// function to check the terminal running status 
   if ((<any>vscode.window).terminals.length === 0) {
     return false;
   }
