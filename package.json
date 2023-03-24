@@ -49,16 +49,16 @@
         {
           "command": "metacall.createDeploy",
           "when": "view==metacall.homeView",
-          "group": "navigation"
+          "group": "navigation@1"
         },
         {
           "command": "metacall.help",
           "when": "view==metacall.homeView",
-          "group": "navigation"
+          "group": "navigation@2"
         },{
           "command": "metacall.logout",
           "when": "view==metacall.homeView",
-          "group": "navigation"
+          "group": "navigation@3"
         }
       ]
     },
@@ -74,9 +74,13 @@
     "views": {
       "metacall-activity-bar": [
         {
-          "type": "webview",
           "id": "metacall.homeView",
           "name": "Home",
+          "visibility": "visible"
+        },
+        {
+          "id": "metacall.deploymentsView",
+          "name":"Deployments",
           "visibility": "visible"
         }
       ]

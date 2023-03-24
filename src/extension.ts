@@ -1,4 +1,5 @@
 import { registerCommands } from "./utils/utilities";
+import { DeploymentsViewProvider } from "./webviews/views/deployments.view.provider";
 import { HomeViewProvider } from "./webviews/views/home.view.provider";
 import * as vscode from "vscode";
 export async function activate(context: vscode.ExtensionContext) {
@@ -8,11 +9,21 @@ export async function activate(context: vscode.ExtensionContext) {
   registerCommands(context);
 
   const homeViewProvider = new HomeViewProvider(context.extensionUri);
+  const deploymentsViewProvider = new DeploymentsViewProvider(
+    context.extensionUri
+  );
 
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider(
       HomeViewProvider.viewType,
       homeViewProvider
+    )
+  );
+
+  context.subscriptions.push(
+    vscode.window.registerWebviewViewProvider(
+      DeploymentsViewProvider.viewType,
+      deploymentsViewProvider
     )
   );
 }
