@@ -1,8 +1,8 @@
 # MetaCall README
 
 A Visual Studio Extension for deploying MetaCall projects.
-MetaCall is on VS Code Extension Marketplace. Just search "MetaCall" on VS Code EXTENSIONS pane and click install
-
+MetaCall is on VS Code Extension Marketplace. Just search "MetaCall" on VS Code EXTENSIONS sidebar .
+Select the Install button, and VS Code will download and install the extension from the Marketplace. When the installation is complete, the Install button will be replaced with a Manage gear button.
 ## Features
 
 MetaCall Visual Studio Extension is provides one click deployment so you don't even need to use the command line for deploying MetaCall projects.
@@ -23,28 +23,25 @@ For example:
 
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
+* `metacall.createTerminal`: Create Terminal 
+* `metacall.createDeploy` : Create Deploy 
+* `metacall.logout` : Logout from metacall account 
+* `metacall.help` : metacall deploy help
 ## Known Issues
 
 If someone has already filed an issue that encompasses your feedback, please leave a 👍 or 👎 reaction on the issue to upvote or downvote it to help us prioritize the issue.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
+This update includes Polyglot development and debugging using MetaCall.
 
 
-
-## Following extension guidelines
+## Extension guidelines
 
 Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
 
-* [Extension Guidelines](https://metacall.io/terms-and-conditions/)
+* [Metacall Extension Guidelines](https://metacall.io/terms-and-conditions/)
 
 ## For more information
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
 **Enjoy!**
