@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
-
-export function activate(context: vscode.ExtensionContext) {
-  let NEXT_TERM_ID = 1;
+import { createNewTask } from "./utils/utilities";
+export async function activate(context: vscode.ExtensionContext) {
+  vscode.window.showInformationMessage("Hello World from metacall!");
 
   let createDeployButton = vscode.window.createStatusBarItem(
     vscode.StatusBarAlignment.Right,
@@ -24,65 +24,60 @@ export function activate(context: vscode.ExtensionContext) {
   );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("metacall.help", () => {
-      if (ensureTerminalExists()) {
-        selectTerminal().then((terminal) => {
-          if (terminal) {
-            terminal.sendText("metacall-deploy --help");
-            terminal.show();
-          }
-        });
-      } else {
-        const terminal = vscode.window.createTerminal(
-          `MetaCall #${NEXT_TERM_ID++}`
-        );
-        terminal.sendText("metacall-deploy --help");
-        terminal.show();
+    vscode.commands.registerCommand("metacall.help", async () => {
+      const helpTask: vscode.Task = createNewTask(
+        "shell.Help",
+        "Help Terminal",
+        "metacall.help",
+        "metacall-deploy --help"
+      );
+
+      try {
+        await vscode.tasks.executeTask(helpTask);
+      } catch (error) {
+        console.log(error);
       }
     })
   );
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("metacall.createDeploy", () => {
-      if (ensureTerminalExists()) {
-        selectTerminal().then((terminal) => {
-          if (terminal) {
-            terminal.sendText("metacall-deploy");
-            terminal.show();
-          }
-        });
-      } else {
-        const terminal = vscode.window.createTerminal(
-          `MetaCall #${NEXT_TERM_ID++}`
-        );
-        terminal.sendText("metacall-deploy");
-        terminal.show();
+    vscode.commands.registerCommand("metacall.createDeploy", async () => {
+      const deployTask: vscode.Task = createNewTask(
+        "shell.Deploy",
+        "Deploy Terminal",
+        "metacall.createDeploy",
+        "metacall-deploy"
+      );
+
+      try {
+        await vscode.tasks.executeTask(deployTask);
+      } catch (error) {
+        console.log(error);
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("metacall.logout", async () => {
+      const logoutTask: vscode.Task = createNewTask(
+        "shell.Logout",
+        "Logout Terminal",
+        "metacall.logout",
+        "metacall-deploy --logout"
+      );
+
+      try {
+        await vscode.tasks.executeTask(logoutTask);
+      } catch (error) {
+        console.log(error);
       }
     })
   );
 }
 
-function selectTerminal(): Thenable<vscode.Terminal | undefined> {
-  interface TerminalQuickPickItem extends vscode.QuickPickItem {
-    terminal: vscode.Terminal;
+export function deactivate() {
+  // Close all terminals when extension is deactivated
+  for (const terminal of vscode.window.terminals) {
+    terminal.dispose();
   }
-  const terminals = <vscode.Terminal[]>(<any>vscode.window).terminals;
-  const items: TerminalQuickPickItem[] = terminals.map((t) => {
-    return {
-      label: `name: ${t.name}`,
-      terminal: t,
-    };
-  });
-  return vscode.window.showQuickPick(items).then((item) => {
-    return item ? item.terminal : undefined;
-  });
 }
-
-function ensureTerminalExists(): boolean {
-  if ((<any>vscode.window).terminals.length === 0) {
-    return false;
-  }
-  return true;
-}
-
-export function deactivate() {}
