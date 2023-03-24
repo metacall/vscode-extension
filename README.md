@@ -1,15 +1,19 @@
 # MetaCall README
 
 A Visual Studio Extension for deploying MetaCall projects.
+MetaCall is on VS Code Extension Marketplace. Just search "MetaCall" on VS Code EXTENSIONS pane and click install
 
 ## Features
 
-MetaCall Visual Studio Extension is for one click deployment so you don't even need to use the command line for deploying MetaCall projects
-This makes working with project alot convenient as Visual Studio is quite Famous among developers 
+MetaCall Visual Studio Extension is provides one click deployment so you don't even need to use the command line for deploying MetaCall projects.
+This makes working with project alot convenient as Visual Studio is quite Famous among developers.
+
 
 ## Requirements
 
 * installation of metacall deploy
+* installation of latest vscode version 
+* Active plan for Metacall Deploy 
 
 ## Extension Settings
 
@@ -24,7 +28,7 @@ This extension contributes the following settings:
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+If someone has already filed an issue that encompasses your feedback, please leave a 👍 or 👎 reaction on the issue to upvote or downvote it to help us prioritize the issue.
 
 ## Release Notes
 
@@ -38,19 +42,9 @@ Users appreciate release notes as you update your extension.
 
 Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+* [Extension Guidelines](https://metacall.io/terms-and-conditions/)
 
 ## For more information
 
 * [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
 **Enjoy!**
