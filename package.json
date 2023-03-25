@@ -1,121 +1,137 @@
 {
-  "name": "metacall",
-  "displayName": "MetaCall",
-  "description": "VS Code extension for deploying into MetaCall FaaS platform.",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.74.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:MetaCall.helloWorld"
-  ],
-  "main": "./dist/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "metacall.helloWorld",
-        "category": "MetaCall",
-        "title": "Hello World"
-      },
-      {
-        "command": "metacall.createTerminal",
-        "category": "MetaCall",
-        "title": "Create Terminal"
-      },
-      {
-        "command": "metacall.help",
-        "category": "MetaCall",
-        "title": "Help",
-        "icon": "$(question)"
-      },
-      {
-        "command": "metacall.createDeploy",
-        "category": "MetaCall",
-        "title": "Deploy",
-        "icon": "$(rocket)"
-      },
-      {
-        "command": "metacall.logout",
-        "category": "MetaCall",
-        "title": "Logout",
-        "icon":"$(sign-out)"
-      }
-    ],
-    "menus": {
-      "view/title": [
-        {
-          "command": "metacall.createDeploy",
-          "when": "view==metacall.homeView",
-          "group": "navigation@1"
-        },
-        {
-          "command": "metacall.help",
-          "when": "view==metacall.homeView",
-          "group": "navigation@2"
-        },{
-          "command": "metacall.logout",
-          "when": "view==metacall.homeView",
-          "group": "navigation@3"
-        }
-      ]
-    },
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "id": "metacall-activity-bar",
-          "title": "MetaCall",
-          "icon": "./icons/metacall.png"
-        }
-      ]
-    },
-    "views": {
-      "metacall-activity-bar": [
-        {
-          "id": "metacall.homeView",
-          "name": "Home",
-          "visibility": "visible"
-        },
-        {
-          "id": "metacall.deploymentsView",
-          "name":"Deployments",
-          "visibility": "visible"
-        }
-      ]
-    }
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run package",
-    "compile": "webpack",
-    "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "npm run compile-tests && npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
-  "devDependencies": {
-    "@types/glob": "^8.0.0",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "16.x",
-    "@types/vscode": "^1.76.0",
-    "@typescript-eslint/eslint-plugin": "^5.45.0",
-    "@typescript-eslint/parser": "^5.45.0",
-    "@vscode/test-electron": "^2.2.0",
-    "eslint": "^8.28.0",
-    "glob": "^8.0.3",
-    "mocha": "^10.1.0",
-    "ts-loader": "^9.4.1",
-    "typescript": "^4.9.3",
-    "vscode": "^1.1.37",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.0"
-  },
-  "dependencies": {
-    "@metacall/protocol": "^0.1.21",
-    "@vscode/codicons": "^0.0.32"
-  }
+	"name": "metacall",
+	"displayName": "MetaCall",
+	"description": "VS Code extension for deploying into MetaCall FaaS platform.",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:MetaCall.helloWorld"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "metacall.helloWorld",
+				"category": "MetaCall",
+				"title": "Hello World"
+			},
+			{
+				"command": "metacall.createTerminal",
+				"category": "MetaCall",
+				"title": "Create Terminal"
+			},
+			{
+				"command": "metacall.help",
+				"category": "MetaCall",
+				"title": "Help",
+				"icon": "$(question)"
+			},
+			{
+				"command": "metacall.createDeploy",
+				"category": "MetaCall",
+				"title": "Deploy",
+				"icon": "$(rocket)"
+			},
+			{
+				"command": "metacall.logout",
+				"category": "MetaCall",
+				"title": "Logout",
+				"icon": "$(sign-out)"
+			},
+			{
+				"command": "metacall.login",
+				"category": "MetaCall",
+				"title": "Login",
+				"icon": "$(sign-in)"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "metacall.login",
+					"when": "view==metacall.homeView",
+					"group": "navigation@1"
+				},
+				{
+					"command": "metacall.createDeploy",
+					"when": "view==metacall.homeView",
+					"group": "navigation@2"
+				},
+				{
+					"command": "metacall.help",
+					"when": "view==metacall.homeView",
+					"group": "navigation@3"
+				},
+				{
+					"command": "metacall.logout",
+					"when": "view==metacall.homeView",
+					"group": "navigation@4"
+				}
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "metacall-activity-bar",
+					"title": "MetaCall",
+					"icon": "./icons/metacall.png"
+				}
+			]
+		},
+		"views": {
+			"metacall-activity-bar": [
+				{
+					"id": "metacall.homeView",
+					"name": "Home",
+					"visibility": "visible"
+				},
+				{
+					"id": "metacall.deploymentsView",
+					"name": "Deployments",
+					"visibility": "visible"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "npm run compile-tests && npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^8.0.0",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "16.x",
+		"@types/vscode": "^1.76.0",
+		"@typescript-eslint/eslint-plugin": "^5.45.0",
+		"@typescript-eslint/parser": "^5.45.0",
+		"@vscode/test-electron": "^2.2.0",
+		"eslint": "^8.28.0",
+		"glob": "^8.0.3",
+		"mocha": "^10.1.0",
+		"ts-loader": "^9.4.1",
+		"typescript": "^4.9.3",
+		"vscode": "^1.1.37",
+		"webpack": "^5.75.0",
+		"webpack-cli": "^5.0.0"
+	},
+	"dependencies": {
+		"@metacall/protocol": "^0.1.21",
+		"@vscode/codicons": "^0.0.32"
+	},
+	"__metadata": {
+		"isApplicationScoped": false,
+		"installedTimestamp": 1679760194324
+	}
 }

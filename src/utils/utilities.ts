@@ -74,4 +74,20 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
       }
     })
   );
+   context.subscriptions.push(
+    vscode.commands.registerCommand("metacall.login", async () => {
+      const loginTask: vscode.Task = createNewTask(
+        "shell.login",
+        "login Terminal",
+        "metacall.login",
+        "metacall-deploy --login"
+      );
+
+      try {
+        await vscode.tasks.executeTask(loginTask);
+      } catch (error) {
+        console.log(error);
+      }
+    })
+  );
 };
