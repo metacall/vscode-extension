@@ -14,27 +14,27 @@ export async function activate(context: vscode.ExtensionContext) {
   // registering all commands
   registerCommands(context);
 
-    // Check if this is the first time the extension is being run
-    const extensionState = context.globalState.get("metacall.extensionState");
+  // Check if this is the first time the extension is being run
+  const extensionState = context.globalState.get("metacall.extensionState");
 
-    // if first time, show the landing page with documenation and instructions
-    if (!extensionState) {
-      const panel = vscode.window.createWebviewPanel(
-        "metacall.landingPage",
-        "Welcome to Metacall",
-        vscode.ViewColumn.One,
-        {
-          enableScripts: true,
-        }
-      );
-  
-      const landingPageViewProvider = new LandingPageViewProvider(
-        panel,
-        context.extensionUri
-      );
-      context.subscriptions.push(landingPageViewProvider);
-      context.globalState.update("metacall.extensionState", true);
-    }
+  // if first time, show the landing page with documenation and instructions
+  if (!extensionState) {
+    const panel = vscode.window.createWebviewPanel(
+      "metacall.landingPage",
+      "Welcome to Metacall",
+      vscode.ViewColumn.One,
+      {
+        enableScripts: true,
+      }
+    );
+
+    const landingPageViewProvider = new LandingPageViewProvider(
+      panel,
+      context.extensionUri
+    );
+    context.subscriptions.push(landingPageViewProvider);
+    context.globalState.update("metacall.extensionState", true);
+  }
 
   const homeViewProvider = new HomeViewProvider(context.extensionUri);
   const deploymentsViewProvider = new DeploymentsViewProvider(
