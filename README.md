@@ -5,7 +5,7 @@ MetaCall is on VS Code Extension Marketplace. Just search "MetaCall" on VS Code 
 Select the Install button, and VS Code will download and install the extension from the Marketplace. When the installation is complete, the Install button will be replaced with a Manage gear button.
 ## Features
 
-MetaCall Visual Studio Extension is provides one click deployment so you don't even need to use the command line for deploying MetaCall projects.
+MetaCall Visual Studio Extension provides one click deployment so you don't even need to use the command line for deploying MetaCall projects.
 This makes working with project alot convenient as Visual Studio is quite Famous among developers.
 
 
@@ -26,6 +26,7 @@ This extension contributes the following settings:
 * `metacall.createTerminal`: Create Terminal 
 * `metacall.createDeploy` : Create Deploy 
 * `metacall.logout` : Logout from metacall account 
+* `metacall.login` : Login to metacall account 
 * `metacall.help` : metacall deploy help
 ## Known Issues
 
