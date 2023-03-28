@@ -38,7 +38,7 @@ export class LandingPageViewProvider {
     Select the Install button, and VS Code will download and install the extension from the Marketplace. When the installation is complete, the Install button will be replaced with a Manage gear button.</p>
 
     <h2>Features</h2>
-    <p>MetaCall Visual Studio Extension is provides one click deployment so you don't even need to use the command line for deploying MetaCall projects.
+    <p>MetaCall Visual Studio Extension provides one click deployment so you don't even need to use the command line for deploying MetaCall projects.
     This makes working with project alot convenient as Visual Studio is quite Famous among developers.</p>
 
     <h2>Requirements</h2>
