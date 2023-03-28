@@ -1,4 +1,15 @@
+import path = require("path");
 import * as vscode from "vscode";
+import { extVars } from "../statics/extension.variables";
+import { OpenUrlTreeItem } from "../tree.views/OpenUrlTreeItem";
+
+export function getIconPath(iconName: string): string {
+  return path.join(getResourcesPath(), iconName);
+}
+
+function getResourcesPath(): string {
+  return extVars.context.asAbsolutePath("icons");
+}
 
 const createNewTask = (
   type: string,
@@ -73,5 +84,31 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
         console.log(error);
       }
     })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("metacall.installCLI", async () => {
+      const installMetacallCLITask: vscode.Task = createNewTask(
+        "shell.InstallCLI",
+        "Install Metacall CLI Terminal",
+        "metacall.installCLI",
+        "npm i -g @metacall/deploy"
+      );
+
+      try {
+        await vscode.tasks.executeTask(installMetacallCLITask);
+      } catch (error) {
+        console.log(error);
+      }
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "metacall.openUrl",
+      async (item: OpenUrlTreeItem) => {
+        await item.openUrl();
+      }
+    )
   );
 };

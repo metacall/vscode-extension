@@ -41,7 +41,16 @@
         "command": "metacall.logout",
         "category": "MetaCall",
         "title": "Logout",
-        "icon":"$(sign-out)"
+        "icon": "$(sign-out)"
+      },{
+        "command": "metacall.installCLI",
+        "category": "MetaCall",
+        "title": "Install MetaCall CLI"
+      },
+      {
+        "command": "metacall.reportIssue",
+        "category": "MetaCall",
+        "title": "Report Issue"
       }
     ],
     "menus": {
@@ -55,7 +64,8 @@
           "command": "metacall.help",
           "when": "view==metacall.homeView",
           "group": "navigation@2"
-        },{
+        },
+        {
           "command": "metacall.logout",
           "when": "view==metacall.homeView",
           "group": "navigation@3"
@@ -80,7 +90,13 @@
         },
         {
           "id": "metacall.deploymentsView",
-          "name":"Deployments",
+          "name": "Deployments",
+          "visibility": "visible"
+        },
+        {
+          "type": "tree",
+          "id": "metacall.helpAndFeedbackView",
+          "name": "Help and Feedback",
           "visibility": "visible"
         }
       ]
@@ -116,6 +132,7 @@
   },
   "dependencies": {
     "@metacall/protocol": "^0.1.21",
+    "@microsoft/vscode-azext-utils": "^1.0.0",
     "@vscode/codicons": "^0.0.32"
   }
 }
