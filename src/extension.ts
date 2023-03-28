@@ -3,6 +3,9 @@ import { DeploymentsViewProvider } from "./webviews/views/deployments.view.provi
 import { HomeViewProvider } from "./webviews/views/home.view.provider";
 import * as vscode from "vscode";
 import { LandingPageViewProvider } from "./webviews/views/landingPage.view.provider";
+import { HelpsTreeItem } from "./tree.views/Help.Feedback.Item";
+import { AzExtTreeDataProvider } from "@microsoft/vscode-azext-utils";
+import { extVars } from "./statics/extension.variables";
 
 // interface MetacallState extends vscode.Memento {
 //   isFirstRun?: boolean;
@@ -10,6 +13,9 @@ import { LandingPageViewProvider } from "./webviews/views/landingPage.view.provi
 
 export async function activate(context: vscode.ExtensionContext) {
   vscode.window.showInformationMessage("Hello World from metacall!");
+
+  // assigning context to extension variables
+  extVars.context = context;
 
   // registering all commands
   registerCommands(context);
@@ -54,6 +60,19 @@ export async function activate(context: vscode.ExtensionContext) {
       deploymentsViewProvider
     )
   );
+
+  const helpRoot = new HelpsTreeItem(undefined);
+  const helpTreeDataProvider = new AzExtTreeDataProvider(
+    helpRoot,
+    "metacall.helpView"
+  );
+
+  const helpTreeView = vscode.window.createTreeView(
+    "metacall.helpAndFeedbackView",
+    { treeDataProvider: helpTreeDataProvider, canSelectMany: false }
+  );
+
+  context.subscriptions.push(helpTreeView);
 }
 
 export function deactivate() {
