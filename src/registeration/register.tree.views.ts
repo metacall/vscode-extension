@@ -18,7 +18,7 @@ export const registerTrees = (context: vscode.ExtensionContext) => {
   const homeRoot = new HomeTreeItem(undefined);
   const homeTreeDataProvider = new AzExtTreeDataProvider(
     homeRoot,
-    "metacall.deployWithRepoUrl"
+    "metacall.homeView"
   );
 
   const homeTreeView = vscode.window.createTreeView("metacall.homeView", {

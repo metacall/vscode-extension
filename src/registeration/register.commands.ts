@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
-import { createNewTask } from "../utils/utilities";
+import { createNewTask, showInputBox } from "../utils/utilities";
 import { OpenUrlTreeItem } from "../views/tree.views/OpenUrlTreeItem";
+import { GenericTreeItem } from "@microsoft/vscode-azext-utils";
 
 export const registerCommands = (context: vscode.ExtensionContext) => {
   const helloWorldCommand = vscode.commands.registerCommand(
@@ -91,12 +92,36 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
     }
   );
 
+  const deployWithUrlCommand = vscode.commands.registerCommand(
+    "metacall.deployWithRepoUrl",
+    async (item: GenericTreeItem) => {
+      const url: string | undefined = await showInputBox("Enter the Repo URL");
+
+      if (url) {
+        const deployWithUrlTask: vscode.Task = createNewTask(
+          "shell.DeployWithUrl",
+          "Deploy With Repo URL Terminal",
+          "metacall.deployWithRepoUrl",
+          `metacall-deploy --addrepo=${url}`
+        );
+        try {
+          await vscode.tasks.executeTask(deployWithUrlTask);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        vscode.window.showErrorMessage("Not valid URL");
+      }
+    }
+  );
+
   context.subscriptions.push(
     helloWorldCommand,
     helpCommand,
     deployCommand,
     logoutCommand,
     installMetacallCLICommand,
-    openUrlCommand
+    openUrlCommand,
+    deployWithUrlCommand
   );
 };
