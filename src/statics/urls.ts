@@ -10,3 +10,6 @@ export const REPORT_ISSUE_URL =
 
 export const WEBSITE_URL = "https://metacall.io";
 
+export const TWITTER_URL = "https://twitter.com/metacallio";
+
+export const LINKEDIN_URL = "https://www.linkedin.com/company/metacall/";
