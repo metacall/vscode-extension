@@ -13,7 +13,10 @@ export class HomeTreeItem extends AzExtParentTreeItem {
   private values?: GenericTreeItem[];
 
   public async loadMoreChildrenImpl(): Promise<AzExtTreeItem[]> {
-    return this.values ?? (this.values = [this.deployWithRepoUrlTreeItem]);
+    return (
+      this.values ??
+      (this.values = [this.deployWithRepoUrlTreeItem, this.inspectTreeItem])
+    );
   }
 
   public hasMoreChildrenImpl(): boolean {
@@ -44,6 +47,18 @@ export class HomeTreeItem extends AzExtParentTreeItem {
 
     node.id = "0";
 
+    return node;
+  }
+
+  private get inspectTreeItem(): AzExtTreeItem {
+    const node = new GenericTreeItem(this, {
+      label: l10n.t("Inspect Deployed Applications"),
+      contextValue: "Inspect",
+      commandId: "metacall.inspect",
+      iconPath: getIconPath("inspect.svg"),
+      includeInTreeItemPicker: true,
+    });
+    node.id = "1";
     return node;
   }
 }

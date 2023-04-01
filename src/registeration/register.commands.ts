@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { createNewTask, showInputBox } from "../utils/utilities";
+import { chooseInput, createNewTask, showInputBox } from "../utils/utilities";
 import { OpenUrlTreeItem } from "../views/tree.views/OpenUrlTreeItem";
 import { GenericTreeItem } from "@microsoft/vscode-azext-utils";
 
@@ -115,6 +115,35 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
     }
   );
 
+  const inspectCommand = vscode.commands.registerCommand(
+    "metacall.inspect",
+    async () => {
+      const inspectFormat = await chooseInput(
+        "Choose Format",
+        "Table",
+        "Raw",
+        "OpenAPIv3"
+      );
+      if (inspectFormat) {
+        const inspectTask: vscode.Task = createNewTask(
+          "shell.Inspect",
+          "Inspect Terminal",
+          "metacall.inspect",
+          `metacall-deploy --inspect=${inspectFormat}`
+        );
+        try {
+          // table format hang the terminal
+          // should make the name of the terminal dynamic with the formats
+          await vscode.tasks.executeTask(inspectTask);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        return;
+      }
+    }
+  );
+
   context.subscriptions.push(
     helloWorldCommand,
     helpCommand,
@@ -122,6 +151,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
     logoutCommand,
     installMetacallCLICommand,
     openUrlCommand,
-    deployWithUrlCommand
+    deployWithUrlCommand,
+    inspectCommand
   );
 };
