@@ -1,8 +1,7 @@
-import path from "path";
+import * as path from "path";
 import { extVars } from "../statics/extension.variables";
 import * as vscode from "vscode";
 import * as child_process from 'child_process';
-
 export function getIconPath(iconName: string): string {
   return path.join(getResourcesPath(), iconName);
 }
