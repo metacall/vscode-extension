@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import { HelpsTreeItem } from "../views/tree.views/Help.Feedback.Item";
 import { AzExtTreeDataProvider } from "@microsoft/vscode-azext-utils";
+import { HomeTreeItem } from "../views/tree.views/home.tree.item";
 
 export const registerTrees = (context: vscode.ExtensionContext) => {
   const helpRoot = new HelpsTreeItem(undefined);
@@ -14,5 +15,16 @@ export const registerTrees = (context: vscode.ExtensionContext) => {
     { treeDataProvider: helpTreeDataProvider, canSelectMany: false }
   );
 
-  context.subscriptions.push(helpTreeView);
+  const homeRoot = new HomeTreeItem(undefined);
+  const homeTreeDataProvider = new AzExtTreeDataProvider(
+    homeRoot,
+    "metacall.homeView"
+  );
+
+  const homeTreeView = vscode.window.createTreeView("metacall.homeView", {
+    treeDataProvider: homeTreeDataProvider,
+    canSelectMany: false,
+  });
+
+  context.subscriptions.push(helpTreeView, homeTreeView);
 };

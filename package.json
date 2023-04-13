@@ -106,6 +106,7 @@
     "views": {
       "metacall-activity-bar": [
         {
+          "type": "tree",
           "id": "metacall.homeView",
           "name": "Home",
           "visibility": "visible"
