@@ -1,3 +1,4 @@
+import { TWITTER_URL, LINKEDIN_URL } from "./../statics/urls";
 import * as vscode from "vscode";
 import { chooseInput, createNewTask, showInputBox } from "../utils/utilities";
 import { OpenUrlTreeItem } from "../views/tree.views/OpenUrlTreeItem";
@@ -85,6 +86,20 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
     }
   );
 
+  const openTwitterCommand = vscode.commands.registerCommand(
+    "metacall.openTwitter",
+    async () => {
+      await vscode.env.openExternal(vscode.Uri.parse(TWITTER_URL));
+    }
+  );
+
+  const openLinkedInCommand = vscode.commands.registerCommand(
+    "metacall.openLinkedIn",
+    async () => {
+      await vscode.env.openExternal(vscode.Uri.parse(LINKEDIN_URL));
+    }
+  );
+
   const openUrlCommand = vscode.commands.registerCommand(
     "metacall.openUrl",
     async (item: OpenUrlTreeItem) => {
@@ -152,6 +167,8 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
     installMetacallCLICommand,
     openUrlCommand,
     deployWithUrlCommand,
-    inspectCommand
+    inspectCommand,
+    openTwitterCommand,
+    openLinkedInCommand
   );
 };
