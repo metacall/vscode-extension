@@ -45,3 +45,11 @@ function isValidUrl(url: string): boolean {
     return false;
   }
 }
+
+export async function chooseInput(placeHolder: string, ...choices: string[]) {
+  let i = 0;
+  const result = await vscode.window.showQuickPick(choices, {
+    placeHolder: placeHolder,
+  });
+  return result;
+}
