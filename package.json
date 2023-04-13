@@ -56,6 +56,18 @@
         "command": "metacall.reportIssue",
         "category": "MetaCall",
         "title": "Report Issue"
+      },
+      {
+        "command": "metacall.openTwitter",
+        "category": "MetaCall Social Media",
+        "title": "Twitter",
+        "icon": "$(twitter)"
+      },
+      {
+        "command": "metacall.openLinkedIn",
+        "category": "MetaCall Social Media",
+        "title": "LinkedIn",
+        "icon": "./icons/linkedin.svg"
       }
     ],
     "menus": {
@@ -74,6 +86,16 @@
           "command": "metacall.logout",
           "when": "view==metacall.homeView",
           "group": "navigation@3"
+        },
+        {
+          "command": "metacall.openTwitter",
+          "when": "view==metacall.helpAndFeedbackView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "metacall.openLinkedIn",
+          "when": "view==metacall.helpAndFeedbackView",
+          "group": "navigation@2"      
         }
       ]
     },
@@ -89,6 +111,7 @@
     "views": {
       "metacall-activity-bar": [
         {
+          "type": "tree",
           "id": "metacall.homeView",
           "name": "Home",
           "visibility": "visible"

@@ -1,16 +1,8 @@
 import * as vscode from "vscode";
-import { HomeViewProvider } from "../views/webviews/views/home.view.provider";
 import { DeploymentsViewProvider } from "../views/webviews/views/deployments.view.provider";
 import { LandingPageViewProvider } from "../views/webviews/views/landingPage.view.provider";
 
 export const registerWebViews = (context: vscode.ExtensionContext) => {
-  const homeViewProvider = new HomeViewProvider(context.extensionUri);
-
-  const homeViewRegistration = vscode.window.registerWebviewViewProvider(
-    HomeViewProvider.viewType,
-    homeViewProvider
-  );
-
   const deploymentsViewProvider = new DeploymentsViewProvider(
     context.extensionUri
   );
@@ -19,7 +11,6 @@ export const registerWebViews = (context: vscode.ExtensionContext) => {
     DeploymentsViewProvider.viewType,
     deploymentsViewProvider
   );
-  
 
   // Check if this is the first time the extension is being run
   const extensionState = context.globalState.get("metacall.extensionState");
@@ -43,5 +34,5 @@ export const registerWebViews = (context: vscode.ExtensionContext) => {
     context.globalState.update("metacall.extensionState", true);
   }
 
-  context.subscriptions.push(homeViewRegistration, deploymentsViewRegistration);
+  context.subscriptions.push(deploymentsViewRegistration);
 };

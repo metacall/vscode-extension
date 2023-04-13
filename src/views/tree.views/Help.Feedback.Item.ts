@@ -71,7 +71,10 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
       this,
       l10n.t("Watch Metacall Faas Tutorial"),
       TUTORIAL_URL,
-      getIconPath("play-circle.svg")
+      {
+        dark: getIconPath("/dark/play-circle.svg"),
+        light: getIconPath("/light/play-circle.svg"),
+      }
     );
 
     node.id = "1";
@@ -84,7 +87,10 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
       this,
       l10n.t("Read Metacall CLI Documentation"),
       CLI_URL,
-      getIconPath("book.svg")
+      {
+        dark: getIconPath("dark/book.svg"),
+        light: getIconPath("light/book.svg"),
+      }
     );
 
     node.id = "2";
@@ -97,7 +103,10 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
       this,
       l10n.t("Open Metacall Website"),
       WEBSITE_URL,
-      getIconPath("browser.svg")
+      {
+        dark: getIconPath("dark/browser.svg"),
+        light: getIconPath("light/browser.svg"),
+      }
     );
 
     node.id = "3";
@@ -110,7 +119,10 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
       label: l10n.t("Metacall CLI Help"),
       contextValue: "Metacall CLI Help",
       commandId: "metacall.help",
-      iconPath: getIconPath("question.svg"),
+      iconPath: {
+        dark: getIconPath("dark/question.svg"),
+        light: getIconPath("light/question.svg"),
+      },
       includeInTreeItemPicker: true,
     });
 
@@ -120,12 +132,10 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
   }
 
   private get contributeTreeItem(): AzExtTreeItem {
-    const node = new OpenUrlTreeItem(
-      this,
-      l10n.t("Contribute"),
-      REPO_URL,
-      getIconPath("issues.svg")
-    );
+    const node = new OpenUrlTreeItem(this, l10n.t("Contribute"), REPO_URL, {
+      dark: getIconPath("dark/issues.svg"),
+      light: getIconPath("light/issues.svg"),
+    });
 
     node.id = "5";
 
@@ -137,7 +147,10 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
       this,
       l10n.t("Report Issue"),
       REPORT_ISSUE_URL,
-      getIconPath("comment.svg")
+      {
+        dark: getIconPath("dark/comment.svg"),
+        light: getIconPath("light/comment.svg"),
+      }
     );
     node.id = "6";
 
