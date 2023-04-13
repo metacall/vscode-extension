@@ -21,6 +21,11 @@
         "title": "Hello World"
       },
       {
+        "command": "metacall.checkInstall",
+        "category": "MetaCall",
+        "title": "check Install"
+      },
+      {
         "command": "metacall.createTerminal",
         "category": "MetaCall",
         "title": "Create Terminal"
