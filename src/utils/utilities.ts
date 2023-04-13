@@ -38,7 +38,7 @@ export class InstallCheck {
     } catch (error: any) {
       vscode.window.showWarningMessage('Metacall is not installed', 'Install Metacall').then((selection) => {
         if (selection === 'Install Metacall') {
-          vscode.env.openExternal(vscode.Uri.parse('https://github.com/metacall/deploy#readme'));
+          vscode.commands.executeCommand('metacall.installCLI');
         }
       });
       return false;
