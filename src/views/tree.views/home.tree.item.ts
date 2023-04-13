@@ -41,7 +41,7 @@ export class HomeTreeItem extends AzExtParentTreeItem {
       label: l10n.t("Deploy with Repository URL"),
       contextValue: "Deploy with Repository URL",
       commandId: "metacall.deployWithRepoUrl",
-      iconPath: getIconPath("link.svg"),
+      iconPath: {dark:getIconPath("dark/link.svg"),light:getIconPath("light/link.svg")},
       includeInTreeItemPicker: true,
     });
 
@@ -55,7 +55,7 @@ export class HomeTreeItem extends AzExtParentTreeItem {
       label: l10n.t("Inspect Deployed Applications"),
       contextValue: "Inspect",
       commandId: "metacall.inspect",
-      iconPath: getIconPath("inspect.svg"),
+      iconPath: {dark:getIconPath("dark/inspect.svg"),light:getIconPath("light/inspect.svg")},
       includeInTreeItemPicker: true,
     });
     node.id = "1";
