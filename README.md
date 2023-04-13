@@ -26,6 +26,7 @@ For example:
 This extension contributes the following settings:
 
 * `metacall.createTerminal`: Create Terminal 
+* `metacall.checkInstall`: Check in Cli installation
 * `metacall.createDeploy` : Create Deploy 
 * `metacall.logout` : Logout from metacall account 
 * `metacall.help` : metacall deploy help

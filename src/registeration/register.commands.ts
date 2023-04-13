@@ -1,6 +1,6 @@
 import { TWITTER_URL, LINKEDIN_URL } from "./../statics/urls";
 import * as vscode from "vscode";
-import { chooseInput, createNewTask, showInputBox } from "../utils/utilities";
+import { chooseInput, createNewTask, InstallCheck, showInputBox } from "../utils/utilities";
 import { OpenUrlTreeItem } from "../views/tree.views/OpenUrlTreeItem";
 import { GenericTreeItem } from "@microsoft/vscode-azext-utils";
 
@@ -11,6 +11,17 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
       vscode.window.showInformationMessage(
         "Hello World from metacall! Let's deploy...🚀"
       );
+    }
+  );
+
+  const checkInstallCommand = vscode.commands.registerCommand(
+    "metacall.checkInstall",
+    async () => {
+      try {
+        InstallCheck.checkInstall();
+      } catch (error) {
+        console.log(error);
+      }
     }
   );
 
