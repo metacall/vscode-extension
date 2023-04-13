@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { createNewTask } from "../utils/utilities";
+import { InstallCheck, createNewTask } from "../utils/utilities";
 import { OpenUrlTreeItem } from "../views/tree.views/OpenUrlTreeItem";
 
 export const registerCommands = (context: vscode.ExtensionContext) => {
@@ -9,6 +9,17 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
       vscode.window.showInformationMessage(
         "Hello World from metacall! Let's deploy...🚀"
       );
+    }
+  );
+
+  const checkInstallCommand = vscode.commands.registerCommand(
+    "metacall.checkInstall",
+    async () => {
+      try {
+        InstallCheck.checkInstall();
+      } catch (error) {
+        console.log(error);
+      }
     }
   );
 
