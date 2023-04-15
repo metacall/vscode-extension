@@ -33,7 +33,7 @@ export class InstallCheck {
         .toString()
         .trim();
       if (/^\d+\.\d+\.\d+$/.test(version)) {
-        vscode.window.showInformationMessage("Metacall is installed!");
+        // It's ok. no need for showing info message
         return true;
       } else {
         return false;
