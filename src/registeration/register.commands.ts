@@ -213,6 +213,26 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
     }
   );
 
+  const deleteCommand = vscode.commands.registerCommand(
+    "metacall.deleteDeployment",
+    async (item: GenericTreeItem) => {
+      const deleteTask: vscode.Task = createNewTask(
+        "shell.Delete",
+        "Delete Deployment Terminal",
+        "metacall.delete",
+        `metacall-deploy --delete`,
+      );
+      try {
+        await vscode.tasks.executeTask(deleteTask);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  );
+
+
+
+
   context.subscriptions.push(
     helloWorldCommand,
     helpCommand,
@@ -223,6 +243,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
     deployWithUrlCommand,
     inspectCommand,
     openTwitterCommand,
-    openLinkedInCommand
+    openLinkedInCommand,
+    deleteCommand
   );
 };
