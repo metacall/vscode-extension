@@ -15,6 +15,7 @@ This makes working with project alot convenient as Visual Studio is quite Famous
 
 * installation of metacall deploy
 * installation of latest vscode version 
+* installation of stable node version
 * Active plan for Metacall Deploy 
 
 ## Extension Settings
@@ -25,6 +26,10 @@ For example:
 
 This extension contributes the following settings:
 
+### Code Snippets
+* `Metacall json`: snippet of metacall.json file content
+
+### Commands
 * `metacall.createTerminal`: Create Terminal 
 * `metacall.checkInstall`: Check in Cli installation
 * `metacall.createDeploy` : Create Deploy 
