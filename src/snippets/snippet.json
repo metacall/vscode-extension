@@ -1,0 +1,7 @@
+{
+  "Metacall json": {
+    "prefix": ["metacall"],
+    "body": "{\n\t\"language_id\": \"${1:}\",\n\t\"path\": \"${2|.|}\",\n\t\"scripts\": [\n\t\t\"${3:}\"\n\t]\n}",
+    "description": "Snippet code to setup metacall.json file indicating project language, deploy path and main script"
+  }
+}
