@@ -15,7 +15,11 @@ export class HomeTreeItem extends AzExtParentTreeItem {
   public async loadMoreChildrenImpl(): Promise<AzExtTreeItem[]> {
     return (
       this.values ??
-      (this.values = [this.deployWithRepoUrlTreeItem, this.inspectTreeItem])
+      (this.values = [
+        this.deployWithRepoUrlTreeItem,
+        this.inspectTreeItem,
+        this.deleteDeploymentTreeItem,
+      ])
     );
   }
 
@@ -41,7 +45,10 @@ export class HomeTreeItem extends AzExtParentTreeItem {
       label: l10n.t("Deploy with Repository URL"),
       contextValue: "Deploy with Repository URL",
       commandId: "metacall.deployWithRepoUrl",
-      iconPath: {dark:getIconPath("dark/link.svg"),light:getIconPath("light/link.svg")},
+      iconPath: {
+        dark: getIconPath("dark/link.svg"),
+        light: getIconPath("light/link.svg"),
+      },
       includeInTreeItemPicker: true,
     });
 
@@ -55,10 +62,28 @@ export class HomeTreeItem extends AzExtParentTreeItem {
       label: l10n.t("Inspect Deployed Applications"),
       contextValue: "Inspect",
       commandId: "metacall.inspect",
-      iconPath: {dark:getIconPath("dark/inspect.svg"),light:getIconPath("light/inspect.svg")},
+      iconPath: {
+        dark: getIconPath("dark/inspect.svg"),
+        light: getIconPath("light/inspect.svg"),
+      },
       includeInTreeItemPicker: true,
     });
     node.id = "1";
+    return node;
+  }
+
+  private get deleteDeploymentTreeItem(): AzExtTreeItem {
+    const node = new GenericTreeItem(this, {
+      label: l10n.t("Delete Deployed Applications"),
+      contextValue: "Delete",
+      commandId: "metacall.deleteDeployment",
+      iconPath: {
+        dark: getIconPath("dark/trash.svg"),
+        light: getIconPath("light/trash.svg"),
+      },
+      includeInTreeItemPicker: true,
+    });
+    node.id = "2";
     return node;
   }
 }
