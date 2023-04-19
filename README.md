@@ -26,10 +26,10 @@ For example:
 
 This extension contributes the following settings:
 
-### Code Snippets
-* `Metacall json`: snippet of metacall.json file content
+#### Code Snippets
+* `Metacall json`: code snippet for metacall.json
 
-### Commands
+#### Commands
 * `metacall.createTerminal`: Create Terminal 
 * `metacall.checkInstall`: Check in Cli installation
 * `metacall.createDeploy` : Create Deploy 
