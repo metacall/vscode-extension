@@ -1,6 +1,13 @@
 import { TWITTER_URL, LINKEDIN_URL } from "./../statics/urls";
 import * as vscode from "vscode";
-import { chooseInput, createNewTask, InstallCheck, showInputBox } from "../utils/utilities";
+import {
+  multipleInputs,
+  createNewTask,
+  InstallCheck,
+  showInputBox,
+  isValidUrl,
+  isValidProjectName,
+} from "../utils/utilities";
 import { OpenUrlTreeItem } from "../views/tree.views/OpenUrlTreeItem";
 import { GenericTreeItem } from "@microsoft/vscode-azext-utils";
 
@@ -46,17 +53,49 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
   const deployCommand = vscode.commands.registerCommand(
     "metacall.createDeploy",
     async () => {
-      const deployTask: vscode.Task = createNewTask(
-        "shell.Deploy",
-        "Deploy Terminal",
-        "metacall.createDeploy",
-        "metacall-deploy"
+      let workspaceName = vscode.workspace.name?.toLocaleLowerCase().trim();
+      workspaceName = workspaceName?.split(" ").join("-");
+      if (!workspaceName) {
+        vscode.window.showErrorMessage(
+          "Please open a folder or workspace first."
+        );
+        return;
+      }
+
+      const choice = await multipleInputs(
+        `Enter the Project Name`,
+        `Use the Default Name (${workspaceName})`,
+        "Enter New Name"
       );
 
-      try {
-        await vscode.tasks.executeTask(deployTask);
-      } catch (error) {
-        console.log(error);
+      if (!choice) {
+        return;
+      }
+      let projectName: string | undefined = workspaceName;
+      if (choice === "Enter New Name") {
+        projectName = await showInputBox(
+          `Please enter a project name`,
+          "Not Valid Name. The input must be lowercase, without spaces, and can include numbers and dashes, but not at the end.",
+          isValidProjectName
+        );
+      }
+
+      // checking if the user cancels the operation
+      if (projectName) {
+        const deployTask: vscode.Task = createNewTask(
+          "shell.Deploy",
+          "Deploy Terminal",
+          "metacall.createDeploy",
+          `metacall-deploy --projectName=${projectName}`
+        );
+
+        try {
+          await vscode.tasks.executeTask(deployTask);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        console.log("Not Valid Name");
       }
     }
   );
@@ -121,7 +160,11 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
   const deployWithUrlCommand = vscode.commands.registerCommand(
     "metacall.deployWithRepoUrl",
     async (item: GenericTreeItem) => {
-      const url: string | undefined = await showInputBox("Enter the Repo URL");
+      const url: string | undefined = await showInputBox(
+        "Enter the Repo URL",
+        "Not valid URL",
+        isValidUrl
+      );
 
       if (url) {
         const deployWithUrlTask: vscode.Task = createNewTask(
@@ -136,7 +179,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
           console.log(error);
         }
       } else {
-        vscode.window.showErrorMessage("Not valid URL");
+        console.log("Not a valid URL");
       }
     }
   );
@@ -144,7 +187,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
   const inspectCommand = vscode.commands.registerCommand(
     "metacall.inspect",
     async () => {
-      const inspectFormat = await chooseInput(
+      const inspectFormat = await multipleInputs(
         "Choose Format",
         "Table",
         "Raw",
