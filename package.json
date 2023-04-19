@@ -7,13 +7,20 @@
     "vscode": "^1.74.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Snippets"
   ],
   "activationEvents": [
     "onCommand:MetaCall.helloWorld"
   ],
   "main": "./dist/extension.js",
   "contributes": {
+    "snippets": [
+      {
+        "language": "json",
+        "path": "./src/snippets/snippet.json"
+      }
+    ],
     "commands": [
       {
         "command": "metacall.helloWorld",
