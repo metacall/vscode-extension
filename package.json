@@ -33,31 +33,26 @@
         "title": "check Install"
       },
       {
-        "command": "metacall.createTerminal",
-        "category": "MetaCall",
-        "title": "Create Terminal"
-      },
-      {
         "command": "metacall.help",
-        "category": "MetaCall",
+        "category": "MetaCall Commands",
         "title": "Help",
         "icon": "$(question)"
       },
       {
-        "command": "metacall.createDeploy",
-        "category": "MetaCall",
+        "command": "metacall.deploy",
+        "category": "MetaCall Commands",
         "title": "Deploy",
         "icon": "$(rocket)"
       },
       {
         "command": "metacall.logout",
-        "category": "MetaCall",
+        "category": "MetaCall Commands",
         "title": "Logout",
         "icon": "$(sign-out)"
       },{
         "command": "metacall.installCLI",
-        "category": "MetaCall",
-        "title": "Install MetaCall CLI"
+        "category": "MetaCall Commands",
+        "title": "Install Metacall Deploy CLI"
       },
       {
         "command": "metacall.reportIssue",
@@ -80,7 +75,7 @@
     "menus": {
       "view/title": [
         {
-          "command": "metacall.createDeploy",
+          "command": "metacall.deploy",
           "when": "view==metacall.homeView",
           "group": "navigation@1"
         },
