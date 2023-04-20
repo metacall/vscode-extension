@@ -84,7 +84,7 @@
         "command": "metacall.openLinkedIn",
         "category": "MetaCall Social Media",
         "title": "LinkedIn",
-        "icon": "./icons/linkedin.svg"
+        "icon": "./resources/icons/linkedin.svg"
       }
     ],
     "menus": {
@@ -121,7 +121,7 @@
         {
           "id": "metacall-activity-bar",
           "title": "MetaCall",
-          "icon": "./icons/metacall.png"
+          "icon": "./resources/icons/metacall.png"
         }
       ]
     },
