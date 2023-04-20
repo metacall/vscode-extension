@@ -32,7 +32,7 @@ This extension contributes the following settings:
 ![Snippets](./resources/images/snippets.gif)
 #### Commands
 * `metacall.checkInstall`: Check in Cli installation
-* `metacall.createDeploy` : Create Deploy 
+* `metacall.deploy` : Deploy Project
 * `metacall.logout` : Logout from metacall account 
 * `metacall.help` : metacall deploy help
 * `metacall.inspect`: Inspect Deployments in 3 formats (Table, Raw, OpenAPIv3)
