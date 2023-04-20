@@ -55,6 +55,21 @@
         "title": "Install Metacall Deploy CLI"
       },
       {
+        "command": "metacall.inspect",
+        "category": "MetaCall Commands",
+        "title": "Inspect"
+      },
+      {
+        "command": "metacall.deleteDeployment",
+        "category": "MetaCall Commands",
+        "title": "Delete Deployment"
+      },
+      {
+        "command": "metacall.deployWithRepoUrl",
+        "category": "MetaCall Commands",
+        "title": "Deploy with Repo URL"
+      },
+      {
         "command": "metacall.reportIssue",
         "category": "MetaCall",
         "title": "Report Issue"
