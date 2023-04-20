@@ -7,7 +7,7 @@ export function getIconPath(iconName: string): string {
 }
 
 function getResourcesPath(): string {
-  return extVars.context.asAbsolutePath("icons");
+  return extVars.context.asAbsolutePath("resources/icons");
 }
 
 export const createNewTask = (

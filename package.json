@@ -29,7 +29,7 @@
       },
       {
         "command": "metacall.checkInstall",
-        "category": "MetaCall",
+        "category": "MetaCall Commands",
         "title": "check Install"
       },
       {
