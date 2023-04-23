@@ -53,8 +53,7 @@ export class LandingPageViewProvider {
     <p>For example:</p>
     <p>This extension contributes the following settings:</p>
     <ul>
-      <li><code>metacall.createTerminal</code>: Create Terminal</li>
-      <li><code>metacall.createDeploy</code>: Create Deploy</li>
+      <li><code>metacall.deploy</code>: Create Deploy</li>
       <li><code>metacall.logout</code>: Logout from metacall account</li>
       <li><code>metacall.help</code>: metacall deploy help</li>
     </ul>

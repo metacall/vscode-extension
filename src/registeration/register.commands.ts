@@ -51,7 +51,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
   );
 
   const deployCommand = vscode.commands.registerCommand(
-    "metacall.createDeploy",
+    "metacall.deploy",
     async () => {
       let workspaceName = vscode.workspace.name?.toLocaleLowerCase().trim();
       workspaceName = workspaceName?.split(" ").join("-");
@@ -85,7 +85,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
         const deployTask: vscode.Task = createNewTask(
           "shell.Deploy",
           "Deploy Terminal",
-          "metacall.createDeploy",
+          "metacall.deploy",
           `metacall-deploy --projectName=${projectName}`
         );
 
@@ -123,7 +123,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
     async () => {
       const installMetacallCLITask: vscode.Task = createNewTask(
         "shell.InstallCLI",
-        "Install Metacall CLI Terminal",
+        "Install Metacall Deploy CLI Terminal",
         "metacall.installCLI",
         "npm i -g @metacall/deploy"
       );
@@ -220,7 +220,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
         "shell.Delete",
         "Delete Deployment Terminal",
         "metacall.delete",
-        `metacall-deploy --delete`,
+        `metacall-deploy --delete`
       );
       try {
         await vscode.tasks.executeTask(deleteTask);
@@ -229,9 +229,6 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
       }
     }
   );
-
-
-
 
   context.subscriptions.push(
     helloWorldCommand,

@@ -54,8 +54,8 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
 
   private get installMetacallCLITreeItem(): AzExtTreeItem {
     const node = new GenericTreeItem(this, {
-      label: l10n.t("Install Metacall-Deploy"),
-      contextValue: "Install Metacall-Deploy",
+      label: l10n.t("Install Metacall Deploy CLI"),
+      contextValue: "Install Metacall Deploy CLI",
       commandId: "metacall.installCLI",
       iconPath: getIconPath("metacall.png"),
       includeInTreeItemPicker: true,

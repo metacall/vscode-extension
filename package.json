@@ -29,35 +29,45 @@
       },
       {
         "command": "metacall.checkInstall",
-        "category": "MetaCall",
+        "category": "MetaCall Commands",
         "title": "check Install"
       },
       {
-        "command": "metacall.createTerminal",
-        "category": "MetaCall",
-        "title": "Create Terminal"
-      },
-      {
         "command": "metacall.help",
-        "category": "MetaCall",
+        "category": "MetaCall Commands",
         "title": "Help",
         "icon": "$(question)"
       },
       {
-        "command": "metacall.createDeploy",
-        "category": "MetaCall",
+        "command": "metacall.deploy",
+        "category": "MetaCall Commands",
         "title": "Deploy",
         "icon": "$(rocket)"
       },
       {
         "command": "metacall.logout",
-        "category": "MetaCall",
+        "category": "MetaCall Commands",
         "title": "Logout",
         "icon": "$(sign-out)"
       },{
         "command": "metacall.installCLI",
-        "category": "MetaCall",
-        "title": "Install MetaCall CLI"
+        "category": "MetaCall Commands",
+        "title": "Install Metacall Deploy CLI"
+      },
+      {
+        "command": "metacall.inspect",
+        "category": "MetaCall Commands",
+        "title": "Inspect"
+      },
+      {
+        "command": "metacall.deleteDeployment",
+        "category": "MetaCall Commands",
+        "title": "Delete Deployment"
+      },
+      {
+        "command": "metacall.deployWithRepoUrl",
+        "category": "MetaCall Commands",
+        "title": "Deploy with Repo URL"
       },
       {
         "command": "metacall.reportIssue",
@@ -74,13 +84,13 @@
         "command": "metacall.openLinkedIn",
         "category": "MetaCall Social Media",
         "title": "LinkedIn",
-        "icon": "./icons/linkedin.svg"
+        "icon": "./resources/icons/linkedin.svg"
       }
     ],
     "menus": {
       "view/title": [
         {
-          "command": "metacall.createDeploy",
+          "command": "metacall.deploy",
           "when": "view==metacall.homeView",
           "group": "navigation@1"
         },
@@ -111,7 +121,7 @@
         {
           "id": "metacall-activity-bar",
           "title": "MetaCall",
-          "icon": "./icons/metacall.png"
+          "icon": "./resources/icons/metacall.png"
         }
       ]
     },
