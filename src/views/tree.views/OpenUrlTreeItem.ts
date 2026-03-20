@@ -12,7 +12,7 @@ export class OpenUrlTreeItem extends GenericTreeItem {
     parent: AzExtParentTreeItem,
     label: string,
     url: string,
-    iconPath?: vscode.ThemeIcon
+    iconPath?: vscode.ThemeIcon | { dark: vscode.Uri; light: vscode.Uri }
   ) {
     super(parent, {
       commandId: "metacall.openUrl",

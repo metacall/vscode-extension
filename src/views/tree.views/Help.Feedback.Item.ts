@@ -10,7 +10,7 @@ import {
   AzExtTreeItem,
   GenericTreeItem,
 } from "@microsoft/vscode-azext-utils";
-import { l10n } from "vscode";
+import { l10n, Uri } from "vscode";
 import { getIconPath } from "../../utils/utilities";
 import { OpenUrlTreeItem } from "./OpenUrlTreeItem";
 
@@ -72,8 +72,8 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
       l10n.t("Watch Metacall Faas Tutorial"),
       TUTORIAL_URL,
       {
-        dark: getIconPath("/dark/play-circle.svg"),
-        light: getIconPath("/light/play-circle.svg"),
+        dark: Uri.file(getIconPath("/dark/play-circle.svg")),
+        light: Uri.file(getIconPath("/light/play-circle.svg")),
       }
     );
 
@@ -88,8 +88,8 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
       l10n.t("Read Metacall CLI Documentation"),
       CLI_URL,
       {
-        dark: getIconPath("dark/book.svg"),
-        light: getIconPath("light/book.svg"),
+        dark: Uri.file(getIconPath("dark/book.svg")),
+        light: Uri.file(getIconPath("light/book.svg")),
       }
     );
 
@@ -104,8 +104,8 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
       l10n.t("Open Metacall Website"),
       WEBSITE_URL,
       {
-        dark: getIconPath("dark/browser.svg"),
-        light: getIconPath("light/browser.svg"),
+        dark: Uri.file(getIconPath("dark/browser.svg")),
+        light: Uri.file(getIconPath("light/browser.svg")),
       }
     );
 
@@ -120,8 +120,8 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
       contextValue: "Metacall CLI Help",
       commandId: "metacall.help",
       iconPath: {
-        dark: getIconPath("dark/question.svg"),
-        light: getIconPath("light/question.svg"),
+        dark: Uri.file(getIconPath("dark/question.svg")),
+        light: Uri.file(getIconPath("light/question.svg")),
       },
       includeInTreeItemPicker: true,
     });
@@ -133,8 +133,8 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
 
   private get contributeTreeItem(): AzExtTreeItem {
     const node = new OpenUrlTreeItem(this, l10n.t("Contribute"), REPO_URL, {
-      dark: getIconPath("dark/issues.svg"),
-      light: getIconPath("light/issues.svg"),
+      dark: Uri.file(getIconPath("dark/issues.svg")),
+      light: Uri.file(getIconPath("light/issues.svg")),
     });
 
     node.id = "5";
@@ -148,8 +148,8 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
       l10n.t("Report Issue"),
       REPORT_ISSUE_URL,
       {
-        dark: getIconPath("dark/comment.svg"),
-        light: getIconPath("light/comment.svg"),
+        dark: Uri.file(getIconPath("dark/comment.svg")),
+        light: Uri.file(getIconPath("light/comment.svg")),
       }
     );
     node.id = "6";
