@@ -5,8 +5,6 @@ import { registerWebViews } from "./registeration/register.web.views";
 import { registerCommands } from "./registeration/register.commands";
 
 export async function activate(context: vscode.ExtensionContext) {
-  vscode.window.showInformationMessage("Hello World from metacall!");
-
   // checking cli installation
   vscode.commands.executeCommand("metacall.checkInstall");
 

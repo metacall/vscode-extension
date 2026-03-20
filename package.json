@@ -11,7 +11,7 @@
     "Snippets"
   ],
   "activationEvents": [
-    "onCommand:MetaCall.helloWorld"
+    "onStartupFinished"
   ],
   "main": "./dist/extension.js",
   "contributes": {
