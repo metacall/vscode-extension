@@ -9,7 +9,7 @@ import {
   isValidProjectName,
 } from "../utils/utilities";
 import { OpenUrlTreeItem } from "../views/tree.views/OpenUrlTreeItem";
-import { GenericTreeItem } from "@microsoft/vscode-azext-utils";
+
 
 export const registerCommands = (context: vscode.ExtensionContext) => {
   const helloWorldCommand = vscode.commands.registerCommand(
@@ -159,7 +159,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
 
   const deployWithUrlCommand = vscode.commands.registerCommand(
     "metacall.deployWithRepoUrl",
-    async (item: GenericTreeItem) => {
+    async (item: vscode.TreeItem) => {
       const url: string | undefined = await showInputBox(
         "Enter the Repo URL",
         "Not valid URL",
@@ -215,7 +215,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
 
   const deleteCommand = vscode.commands.registerCommand(
     "metacall.deleteDeployment",
-    async (item: GenericTreeItem) => {
+    async (item: vscode.TreeItem) => {
       const deleteTask: vscode.Task = createNewTask(
         "shell.Delete",
         "Delete Deployment Terminal",
