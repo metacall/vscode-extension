@@ -11,14 +11,6 @@ import {
 import { OpenUrlTreeItem } from "../views/tree.views/OpenUrlTreeItem";
 
 export const registerCommands = (context: vscode.ExtensionContext) => {
-  const helloWorldCommand = vscode.commands.registerCommand(
-    "metacall.helloWorld",
-    () => {
-      vscode.window.showInformationMessage(
-        "Hello World from metacall! Let's deploy...🚀"
-      );
-    }
-  );
 
   const checkInstallCommand = vscode.commands.registerCommand(
     "metacall.checkInstall",
@@ -218,7 +210,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
       const deleteTask: vscode.Task = createNewTask(
         "shell.Delete",
         "Delete Deployment Terminal",
-        "metacall.delete",
+        "metacall.deleteDeployment",
         `metacall-deploy --delete`
       );
       try {
@@ -230,7 +222,7 @@ export const registerCommands = (context: vscode.ExtensionContext) => {
   );
 
   context.subscriptions.push(
-    helloWorldCommand,
+    checkInstallCommand,
     helpCommand,
     deployCommand,
     logoutCommand,

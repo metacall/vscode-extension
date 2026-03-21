@@ -120,6 +120,7 @@ export class HelpsTreeItem extends vscode.TreeItem {
     const node = new OpenUrlTreeItem(l10n.t("Contribute"), REPO_URL, {
       dark: vscode.Uri.file(getIconPath("dark/issues.svg")),
       light: vscode.Uri.file(getIconPath("light/issues.svg")),
+
     });
 
     node.id = "5";
