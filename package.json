@@ -178,7 +178,7 @@
   },
   "dependencies": {
     "@azure/ms-rest-azure-env": "^2.0.0",
-    "@metacall/protocol": "^0.1.21",
+    "@metacall/protocol": "^0.1.26",
     "@microsoft/vscode-azext-utils": "^1.0.0",
     "@vscode/codicons": "^0.0.32"
   }
