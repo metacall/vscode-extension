@@ -49,7 +49,8 @@
         "category": "MetaCall Commands",
         "title": "Logout",
         "icon": "$(sign-out)"
-      },{
+      },
+      {
         "command": "metacall.installCLI",
         "category": "MetaCall Commands",
         "title": "Install Metacall Deploy CLI"
@@ -112,7 +113,7 @@
         {
           "command": "metacall.openLinkedIn",
           "when": "view==metacall.helpAndFeedbackView",
-          "group": "navigation@2"      
+          "group": "navigation@2"
         }
       ]
     },
@@ -176,6 +177,7 @@
     "webpack-cli": "^5.0.0"
   },
   "dependencies": {
+    "@azure/ms-rest-azure-env": "^2.0.0",
     "@metacall/protocol": "^0.1.21",
     "@microsoft/vscode-azext-utils": "^1.0.0",
     "@vscode/codicons": "^0.0.32"
