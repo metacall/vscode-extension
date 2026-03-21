@@ -12,7 +12,7 @@ async function main() {
 		// Passed to --extensionTestsPath
 		const extensionTestsPath = path.resolve(__dirname, './suite/index');
 
-		// Download VS Code, unzip it and run the integration test
+		// Use a provided VS Code executable (via env vars) or download VS Code and run the integration test
 		const vscodeExecutablePath =
 			process.env.VSCODE_EXECUTABLE || process.env.VSCODE_EXECUTABLE_PATH;
 		await runTests({
