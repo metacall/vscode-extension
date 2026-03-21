@@ -49,7 +49,8 @@
         "category": "MetaCall Commands",
         "title": "Logout",
         "icon": "$(sign-out)"
-      },{
+      },
+      {
         "command": "metacall.installCLI",
         "category": "MetaCall Commands",
         "title": "Install Metacall Deploy CLI"
@@ -112,7 +113,7 @@
         {
           "command": "metacall.openLinkedIn",
           "when": "view==metacall.helpAndFeedbackView",
-          "group": "navigation@2"      
+          "group": "navigation@2"
         }
       ]
     },
