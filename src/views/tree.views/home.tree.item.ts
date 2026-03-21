@@ -1,18 +1,19 @@
-import {
-  AzExtParentTreeItem,
-  AzExtTreeItem,
-  GenericTreeItem,
-} from "@microsoft/vscode-azext-utils";
+import * as vscode from "vscode";
 import { l10n } from "vscode";
 import { getIconPath } from "../../utils/utilities";
 
-export class HomeTreeItem extends AzExtParentTreeItem {
+export class HomeTreeItem extends vscode.TreeItem {
   public label: string = "Home";
   public contextValue: string = "home";
 
-  private values?: GenericTreeItem[];
+  constructor() {
+    super("Home", vscode.TreeItemCollapsibleState.Expanded);
+    this.contextValue = "home";
+  }
 
-  public async loadMoreChildrenImpl(): Promise<AzExtTreeItem[]> {
+  private values?: vscode.TreeItem[];
+
+  public async getChildren(): Promise<vscode.TreeItem[]> {
     return (
       this.values ??
       (this.values = [
@@ -23,66 +24,60 @@ export class HomeTreeItem extends AzExtParentTreeItem {
     );
   }
 
-  public hasMoreChildrenImpl(): boolean {
-    return false;
-  }
-
-  public compareChildrenImpl(
-    item1: AzExtTreeItem,
-    item2: AzExtTreeItem
-  ): number {
-    if (!item1 || !item1.id) {
-      return -1;
-    }
-    if (!item2 || !item2.id) {
-      return 1;
-    }
-    return item1?.id.localeCompare(item2?.id);
-  }
-
-  private get deployWithRepoUrlTreeItem(): AzExtTreeItem {
-    const node = new GenericTreeItem(this, {
-      label: l10n.t("Deploy with Repository URL"),
-      contextValue: "Deploy with Repository URL",
-      commandId: "metacall.deployWithRepoUrl",
-      iconPath: {
-        dark: getIconPath("dark/link.svg"),
-        light: getIconPath("light/link.svg"),
-      },
-      includeInTreeItemPicker: true,
-    });
-
+  private get deployWithRepoUrlTreeItem(): vscode.TreeItem {
+    const node = new vscode.TreeItem(
+      l10n.t("Deploy with Repository URL"),
+      vscode.TreeItemCollapsibleState.None
+    );
+    node.contextValue = "Deploy with Repository URL";
+    node.command = {
+      command: "metacall.deployWithRepoUrl",
+      title: l10n.t("Deploy with Repository URL"),
+      arguments: [node],
+    };
+    node.iconPath = {
+      dark: vscode.Uri.file(getIconPath("dark/link.svg")),
+      light: vscode.Uri.file(getIconPath("light/link.svg")),
+    };
     node.id = "0";
 
     return node;
   }
 
-  private get inspectTreeItem(): AzExtTreeItem {
-    const node = new GenericTreeItem(this, {
-      label: l10n.t("Inspect Deployed Applications"),
-      contextValue: "Inspect",
-      commandId: "metacall.inspect",
-      iconPath: {
-        dark: getIconPath("dark/inspect.svg"),
-        light: getIconPath("light/inspect.svg"),
-      },
-      includeInTreeItemPicker: true,
-    });
+  private get inspectTreeItem(): vscode.TreeItem {
+    const node = new vscode.TreeItem(
+      l10n.t("Inspect Deployed Applications"),
+      vscode.TreeItemCollapsibleState.None
+    );
+    node.contextValue = "Inspect";
+    node.command = {
+      command: "metacall.inspect",
+      title: l10n.t("Inspect Deployed Applications"),
+      arguments: [node],
+    };
+    node.iconPath = {
+      dark: vscode.Uri.file(getIconPath("dark/inspect.svg")),
+      light: vscode.Uri.file(getIconPath("light/inspect.svg")),
+    };
     node.id = "1";
     return node;
   }
 
-  private get deleteDeploymentTreeItem(): AzExtTreeItem {
-    const node = new GenericTreeItem(this, {
-      label: l10n.t("Delete Deployed Applications"),
-      contextValue: "Delete",
-      commandId: "metacall.deleteDeployment",
-      iconPath: {
-        dark: getIconPath("dark/trash.svg"),
-        light: getIconPath("light/trash.svg"),
-      },
-      includeInTreeItemPicker: true,
-    });
+  private get deleteDeploymentTreeItem(): vscode.TreeItem {
+    const node = new vscode.TreeItem(
+      l10n.t("Delete Deployed Applications"),
+      vscode.TreeItemCollapsibleState.None
+    );
+    node.contextValue = "Delete";
+    node.command = {
+      command: "metacall.deleteDeployment",
+      title: l10n.t("Delete Deployed Applications"),
+      arguments: [node],
+    };
+    node.iconPath = {
+      dark: vscode.Uri.file(getIconPath("dark/trash.svg")),
+      light: vscode.Uri.file(getIconPath("light/trash.svg")),
+    };
     node.id = "2";
     return node;
   }

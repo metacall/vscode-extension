@@ -5,22 +5,23 @@ import {
   REPORT_ISSUE_URL,
   WEBSITE_URL,
 } from "../../statics/urls";
-import {
-  AzExtParentTreeItem,
-  AzExtTreeItem,
-  GenericTreeItem,
-} from "@microsoft/vscode-azext-utils";
+import * as vscode from "vscode";
 import { l10n } from "vscode";
 import { getIconPath } from "../../utils/utilities";
 import { OpenUrlTreeItem } from "./OpenUrlTreeItem";
 
-export class HelpsTreeItem extends AzExtParentTreeItem {
+export class HelpsTreeItem extends vscode.TreeItem {
   public label: string = "Help and Feedback";
   public contextValue: string = "help";
 
-  private values?: GenericTreeItem[];
+  constructor() {
+    super("Help and Feedback", vscode.TreeItemCollapsibleState.Expanded);
+    this.contextValue = "help";
+  }
 
-  public async loadMoreChildrenImpl(): Promise<AzExtTreeItem[]> {
+  private values?: vscode.TreeItem[];
+
+  public async getChildren(): Promise<vscode.TreeItem[]> {
     return (
       this.values ??
       (this.values = [
@@ -35,45 +36,29 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
     );
   }
 
-  public hasMoreChildrenImpl(): boolean {
-    return false;
-  }
-
-  public compareChildrenImpl(
-    item1: AzExtTreeItem,
-    item2: AzExtTreeItem
-  ): number {
-    if (!item1 || !item1.id) {
-      return -1;
-    }
-    if (!item2 || !item2.id) {
-      return 1;
-    }
-    return item1?.id.localeCompare(item2?.id);
-  }
-
-  private get installMetacallCLITreeItem(): AzExtTreeItem {
-    const node = new GenericTreeItem(this, {
-      label: l10n.t("Install Metacall Deploy CLI"),
-      contextValue: "Install Metacall Deploy CLI",
-      commandId: "metacall.installCLI",
-      iconPath: getIconPath("metacall.png"),
-      includeInTreeItemPicker: true,
-    });
-
+  private get installMetacallCLITreeItem(): vscode.TreeItem {
+    const node = new vscode.TreeItem(
+      l10n.t("Install Metacall Deploy CLI"),
+      vscode.TreeItemCollapsibleState.None
+    );
+    node.contextValue = "Install Metacall Deploy CLI";
+    node.command = {
+      command: "metacall.installCLI",
+      title: l10n.t("Install Metacall Deploy CLI"),
+    };
+    node.iconPath = getIconPath("metacall.png");
     node.id = "0";
 
     return node;
   }
 
-  private get watchVideosTreeItem(): AzExtTreeItem {
+  private get watchVideosTreeItem(): vscode.TreeItem {
     const node = new OpenUrlTreeItem(
-      this,
       l10n.t("Watch Metacall Faas Tutorial"),
       TUTORIAL_URL,
       {
-        dark: getIconPath("/dark/play-circle.svg"),
-        light: getIconPath("/light/play-circle.svg"),
+        dark: vscode.Uri.file(getIconPath("/dark/play-circle.svg")),
+        light: vscode.Uri.file(getIconPath("/light/play-circle.svg")),
       }
     );
 
@@ -82,14 +67,13 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
     return node;
   }
 
-  private get readDocumentationTreeItem(): AzExtTreeItem {
+  private get readDocumentationTreeItem(): vscode.TreeItem {
     const node = new OpenUrlTreeItem(
-      this,
       l10n.t("Read Metacall CLI Documentation"),
       CLI_URL,
       {
-        dark: getIconPath("dark/book.svg"),
-        light: getIconPath("light/book.svg"),
+        dark: vscode.Uri.file(getIconPath("dark/book.svg")),
+        light: vscode.Uri.file(getIconPath("light/book.svg")),
       }
     );
 
@@ -98,14 +82,13 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
     return node;
   }
 
-  private get openWebsiteTreeItem(): AzExtTreeItem {
+  private get openWebsiteTreeItem(): vscode.TreeItem {
     const node = new OpenUrlTreeItem(
-      this,
       l10n.t("Open Metacall Website"),
       WEBSITE_URL,
       {
-        dark: getIconPath("dark/browser.svg"),
-        light: getIconPath("light/browser.svg"),
+        dark: vscode.Uri.file(getIconPath("dark/browser.svg")),
+        light: vscode.Uri.file(getIconPath("light/browser.svg")),
       }
     );
 
@@ -114,27 +97,29 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
     return node;
   }
 
-  private get cliHelpTreeItem(): AzExtTreeItem {
-    const node = new GenericTreeItem(this, {
-      label: l10n.t("Metacall CLI Help"),
-      contextValue: "Metacall CLI Help",
-      commandId: "metacall.help",
-      iconPath: {
-        dark: getIconPath("dark/question.svg"),
-        light: getIconPath("light/question.svg"),
-      },
-      includeInTreeItemPicker: true,
-    });
-
+  private get cliHelpTreeItem(): vscode.TreeItem {
+    const node = new vscode.TreeItem(
+      l10n.t("Metacall CLI Help"),
+      vscode.TreeItemCollapsibleState.None
+    );
+    node.contextValue = "Metacall CLI Help";
+    node.command = {
+      command: "metacall.help",
+      title: l10n.t("Metacall CLI Help"),
+    };
+    node.iconPath = {
+      dark: vscode.Uri.file(getIconPath("dark/question.svg")),
+      light: vscode.Uri.file(getIconPath("light/question.svg")),
+    };
     node.id = "4";
 
     return node;
   }
 
-  private get contributeTreeItem(): AzExtTreeItem {
-    const node = new OpenUrlTreeItem(this, l10n.t("Contribute"), REPO_URL, {
-      dark: getIconPath("dark/issues.svg"),
-      light: getIconPath("light/issues.svg"),
+  private get contributeTreeItem(): vscode.TreeItem {
+    const node = new OpenUrlTreeItem(l10n.t("Contribute"), REPO_URL, {
+      dark: vscode.Uri.file(getIconPath("dark/issues.svg")),
+      light: vscode.Uri.file(getIconPath("light/issues.svg")),
     });
 
     node.id = "5";
@@ -142,14 +127,13 @@ export class HelpsTreeItem extends AzExtParentTreeItem {
     return node;
   }
 
-  private get reportIssuesTreeItem(): AzExtTreeItem {
+  private get reportIssuesTreeItem(): vscode.TreeItem {
     const node = new OpenUrlTreeItem(
-      this,
       l10n.t("Report Issue"),
       REPORT_ISSUE_URL,
       {
-        dark: getIconPath("dark/comment.svg"),
-        light: getIconPath("light/comment.svg"),
+        dark: vscode.Uri.file(getIconPath("dark/comment.svg")),
+        light: vscode.Uri.file(getIconPath("light/comment.svg")),
       }
     );
     node.id = "6";

@@ -1,26 +1,22 @@
 import * as vscode from "vscode";
 
-import {
-  AzExtParentTreeItem,
-  GenericTreeItem,
-} from "@microsoft/vscode-azext-utils";
 
-export class OpenUrlTreeItem extends GenericTreeItem {
+export class OpenUrlTreeItem extends vscode.TreeItem {
   private _url: string;
 
   public constructor(
-    parent: AzExtParentTreeItem,
     label: string,
     url: string,
-    iconPath?: vscode.ThemeIcon
+    iconPath?: vscode.ThemeIcon | { dark: vscode.Uri; light: vscode.Uri }
   ) {
-    super(parent, {
-      commandId: "metacall.openUrl",
-      contextValue: "openUrl",
-      iconPath: iconPath,
-      includeInTreeItemPicker: true,
-      label,
-    });
+    super(label, vscode.TreeItemCollapsibleState.None);
+    this.command = {
+      command: "metacall.openUrl",
+      title: "Open URL",
+      arguments: [this],
+    };
+    this.contextValue = "openUrl";
+    this.iconPath = iconPath;
     this._url = url;
   }
 
